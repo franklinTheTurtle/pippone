@@ -1,16 +1,33 @@
-name: PR Closer
+# name: PR Closer
 
-on:
-  pull_request:
-    types: [opened, reopened]
+# on:
+#   pull_request:
+#     types: [opened, reopened]
 
+
+# jobs:
+#   close-pull-request:
+#     runs-on: ubuntu-latest
+#     name: Close Pull Request
+#     steps:
+#       - uses: codelytv/no-pull-requests@v1
+#         with:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           message: 🙅 We don't accept Pull Requests!
+
+
+on: pull_request
 
 jobs:
-  close-pull-request:
+  example_comment_pr:
     runs-on: ubuntu-latest
-    name: Close Pull Request
+    name: An example job to comment a PR
     steps:
-      - uses: codelytv/no-pull-requests@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          message: 🙅 We don't accept Pull Requests!
+          message: |
+            Hey can you check this link [instead](https://google.com)?
